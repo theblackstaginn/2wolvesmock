@@ -117,10 +117,13 @@ img{ display:block; max-width:100%; height:auto; }
   content:"";
   position:absolute;
   inset:0;
-  background:
-    url("Storefront.jpg") center / cover no-repeat,
-    linear-gradient(rgba(6,8,12,.82), rgba(6,8,12,.82));
-  filter:saturate(1.02) contrast(1.08) brightness(.95);
+
+  /* solid dark hero — NO image */
+  background: linear-gradient(
+    rgba(6,8,12,.92),
+    rgba(6,8,12,.92)
+  );
+
   z-index:-2;
 }
 
@@ -129,8 +132,11 @@ img{ display:block; max-width:100%; height:auto; }
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 520px at 50% 20%, rgba(0,0,0,.18), rgba(0,0,0,.60)),
-    linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.68));
+    radial-gradient(
+      900px 520px at 50% 20%,
+      rgba(0,0,0,.12),
+      rgba(0,0,0,.48)
+    );
   z-index:-1;
 }
 
