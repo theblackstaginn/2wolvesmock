@@ -75,13 +75,12 @@ img{ display:block; max-width:100%; height:auto; }
   overflow:hidden;
 }
 
-/* Fixed hero background layer (iOS stable) */
 .hero::before{
   content:"";
   position: absolute;
   inset: 0;
-  background: url("2w-bg.PNG") center / cover no-repeat;
-  filter: saturate(1.05) contrast(1.05);
+  background: url("Storefront.jpg") center / cover no-repeat;
+  filter: saturate(1.02) contrast(1.08) brightness(.92);
   transform: translateZ(0);
   z-index: -2;
 }
@@ -172,11 +171,21 @@ img{ display:block; max-width:100%; height:auto; }
   margin-bottom: 16px;
 }
 
-/* CARD GRID */
 .cards{
-  display:grid;
+  position: relative;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 14px;
+
+  padding: 28px;
+  border-radius: 26px;
+
+  background:
+    linear-gradient(
+      rgba(8,10,14,.85),
+      rgba(8,10,14,.85)
+    ),
+    url("2w-bg.PNG") center / cover no-repeat;
 }
 
 @media (min-width: 820px){
