@@ -1,6 +1,6 @@
-/* app.js — 2WolvesMock
-   - Lightbox for .card buttons
+/* app.js — 2WolvesMock (REWRITE)
    - Sets footer year
+   - Lightbox for .card buttons
 */
 
 (() => {
@@ -15,26 +15,28 @@
 
   if (!lightbox || !titleEl || !imgEl) return;
 
+  const isOpen = () => lightbox.getAttribute("aria-hidden") === "false";
+
   const open = (title, imgSrc) => {
     titleEl.textContent = title || "Preview";
     imgEl.src = imgSrc || "";
     imgEl.alt = title || "";
     lightbox.setAttribute("aria-hidden", "false");
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
   };
 
   const close = () => {
     lightbox.setAttribute("aria-hidden", "true");
     imgEl.src = "";
+    document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
   };
 
   document.addEventListener("click", (e) => {
     const card = e.target.closest?.(".card");
     if (card) {
-      const title = card.getAttribute("data-title") || "";
-      const img = card.getAttribute("data-img") || "";
-      open(title, img);
+      open(card.dataset.title || "", card.dataset.img || "");
       return;
     }
 
@@ -44,8 +46,6 @@
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && lightbox.getAttribute("aria-hidden") === "false") {
-      close();
-    }
+    if (e.key === "Escape" && isOpen()) close();
   });
 })();
