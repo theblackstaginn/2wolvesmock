@@ -86,9 +86,18 @@ img{
   position:fixed;
   inset:0;
   z-index:-2;
-  background:url("2w-bg.PNG") center / cover no-repeat;
+  background: url("2w-bg.PNG") center / cover no-repeat;
   opacity:var(--bgOpacity);
   filter: saturate(var(--bgSat)) brightness(var(--bgBright));
+}
+
+/* Mobile background swap */
+@media (max-width: 720px){
+  .page::before{
+    background-image: url("2w-bg-mobile.PNG");
+    background-position: center;
+    background-size: cover;
+  }
 }
 
 .page::after{
