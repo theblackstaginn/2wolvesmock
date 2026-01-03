@@ -31,6 +31,11 @@
 
       <div class="hero-actions">
         <a class="btn" href="mailto:thefarm1965@gmail.com">Email</a>
+
+        <!-- Cart button (opens drawer) -->
+        <button class="btn ghost cart-open" type="button" aria-label="Open cart">
+          Cart <span class="cart-count" id="cartCount">0</span>
+        </button>
       </div>
     </div>
   </header>
@@ -51,12 +56,19 @@
     <!-- FEATURE GRID -->
     <section id="shop" class="section grid" aria-label="Products and process">
       <div class="wrap">
-        <h2>Featured
-          (this is just a mock up of what the future products section would look like.)
+        <h2>
+          Featured
+          <span style="font-weight:600; opacity:.8; font-size:0.95em;">
+            (this is just a mock up of what the future products section would look like.)
+          </span>
         </h2>
 
         <div class="cards">
-          <button class="card" type="button" data-title="Detox Tea" data-img="Detox-tea.jpg" aria-label="View Detox Tea">
+          <button class="card" type="button"
+            data-sku="detox-tea"
+            data-title="Detox Tea"
+            data-img="Detox-tea.jpg"
+            aria-label="View Detox Tea">
             <div class="thumb">
               <img src="Detox-tea.jpg" alt="Detox Tea" loading="lazy" />
             </div>
@@ -66,7 +78,11 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Tattoo Balm" data-img="Tattoo-balm.jpg" aria-label="View Tattoo Balm">
+          <button class="card" type="button"
+            data-sku="tattoo-balm"
+            data-title="Tattoo Balm"
+            data-img="Tattoo-balm.jpg"
+            aria-label="View Tattoo Balm">
             <div class="thumb">
               <img src="Tattoo-balm.jpg" alt="Tattoo Balm" loading="lazy" />
             </div>
@@ -76,7 +92,11 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Rose Room Spray" data-img="Rose-room-spray.jpg" aria-label="View Rose Room Spray">
+          <button class="card" type="button"
+            data-sku="rose-room-spray"
+            data-title="Rose Room Spray"
+            data-img="Rose-room-spray.jpg"
+            aria-label="View Rose Room Spray">
             <div class="thumb">
               <img src="Rose-room-spray.jpg" alt="Rose Room Spray" loading="lazy" />
             </div>
@@ -86,7 +106,11 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Herbs" data-img="Herbs.jpg" aria-label="View Herbs">
+          <button class="card" type="button"
+            data-sku="herbs"
+            data-title="Herbs"
+            data-img="Herbs.jpg"
+            aria-label="View Herbs">
             <div class="thumb">
               <img src="Herbs.jpg" alt="Herbs" loading="lazy" />
             </div>
@@ -96,7 +120,11 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Mixing" data-img="Mixing.jpg" aria-label="View Mixing">
+          <button class="card" type="button"
+            data-sku="mixing"
+            data-title="Mixing"
+            data-img="Mixing.jpg"
+            aria-label="View Mixing">
             <div class="thumb">
               <img src="Mixing.jpg" alt="Mixing" loading="lazy" />
             </div>
@@ -106,7 +134,11 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Storefront" data-img="Storefront.jpg" aria-label="View Storefront">
+          <button class="card" type="button"
+            data-sku="storefront"
+            data-title="Storefront"
+            data-img="Storefront.jpg"
+            aria-label="View Storefront">
             <div class="thumb">
               <img src="Storefront.jpg" alt="Storefront" loading="lazy" />
             </div>
@@ -145,20 +177,75 @@
     </footer>
   </main>
 
-  <!-- LIGHTBOX -->
+  <!-- QUICK VIEW (LIGHTBOX) -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-backdrop" type="button" aria-label="Close"></button>
 
     <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
       <button class="lightbox-close" type="button" aria-label="Close">✕</button>
-      <h3 class="lightbox-title" id="lightboxTitle"></h3>
-      <img class="lightbox-img" id="lightboxImg" alt="" loading="eager" />
+
+      <div class="qv">
+        <div class="qv-media">
+          <img class="lightbox-img" id="lightboxImg" alt="" />
+        </div>
+
+        <div class="qv-info">
+          <h3 class="lightbox-title" id="lightboxTitle"></h3>
+
+          <div class="qv-price" id="lightboxPrice"></div>
+
+          <div class="qv-controls">
+            <label class="qv-qty">
+              <span>Qty</span>
+              <input id="qtyInput" type="number" min="1" step="1" value="1" inputmode="numeric" />
+            </label>
+
+            <button class="btn qv-add" id="addToCartBtn" type="button">
+              Add to cart
+            </button>
+          </div>
+
+          <p class="qv-note">
+            Pickup only. No shipping. Checkout sends an email request.
+          </p>
+
+          <div class="qv-actions">
+            <button class="btn ghost" id="viewCartBtn" type="button">View cart</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- CART DRAWER -->
+  <aside class="cart" id="cart" aria-hidden="true" aria-label="Cart">
+    <button class="cart-backdrop" type="button" aria-label="Close cart"></button>
 
-  <!-- OPTIONAL: if you ever see injected "Preview" badges from older templates, this kills them -->
-  <!-- <style>.preview,.preview-badge,#preview,[data-preview]{display:none!important}</style> -->
+    <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-head">
+        <h3 id="cartTitle">Cart (Pickup Only)</h3>
+        <button class="cart-close" type="button" aria-label="Close cart">✕</button>
+      </div>
+
+      <div class="cart-body" id="cartItems"></div>
+
+      <div class="cart-foot">
+        <div class="cart-summary">
+          <div>Total items: <strong id="cartTotalItems">0</strong></div>
+          <div>Total: <strong id="cartTotalPrice">—</strong></div>
+        </div>
+
+        <p class="cart-note">
+          This mock uses “request pickup” instead of payments. We can connect real checkout later (Square/Shopify/Stripe) if needed.
+        </p>
+
+        <a class="btn" id="pickupEmailBtn" href="mailto:thefarm1965@gmail.com">
+          Request pickup via email
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
 </body>
 </html>
