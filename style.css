@@ -8,21 +8,10 @@
    ROOT + RESET
    ======================= */
 :root{
-  --text:#f1f3f5;
-  --muted: rgba(241,243,245,.72);
-
-  --bone: rgba(240,232,220,.18);
-  --shadow: 0 14px 40px rgba(0,0,0,.28);
-
-  --radius: 18px;
-  --radius2: 22px;
-
-  --wrap: min(1080px, calc(100% - 36px));
-
-  --bgOpacity: .55;
-  --bgBright: .92;
-  --bgSat: 1.08;
-  --bgCon: 1.06;
+  --bgOpacity: .72;   /* was .55 */
+  --bgBright: 1.02;   /* was .92 */
+  --bgSat: 1.05;      /* was 1.08 */
+  --bgCon: 1.10;      /* was 1.06 */
 }
 
 *{ box-sizing:border-box; }
@@ -109,27 +98,23 @@ img{
   overflow:hidden;
 }
 
+/* HERO: use storefront image, no dark panel */
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    rgba(6,8,12,.92),
-    rgba(6,8,12,.92)
-  );
+  background: url("Storefront.jpg") center / cover no-repeat;
   z-index:-2;
 }
 
+/* gentle readable scrim (not a slab) */
 .hero-scrim{
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(
-      900px 520px at 50% 20%,
-      rgba(0,0,0,.12),
-      rgba(0,0,0,.48)
-    );
   z-index:-1;
+  background:
+    radial-gradient(900px 520px at 50% 22%, rgba(0,0,0,.22), rgba(0,0,0,.62)),
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.60));
 }
 
 .hero-inner{
