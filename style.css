@@ -180,40 +180,36 @@ img{ display:block; max-width:100%; height:auto; }
   padding: 28px;
   border-radius: 26px;
 
-  /* keep the container itself dark-glass */
   background: rgba(8,10,14,.72);
   border: 1px solid rgba(255,255,255,.08);
   overflow: hidden;
 }
 
-/* 2w-bg behind the tiles */
 .cards::before{
   content:"";
-  position: absolute;
-  inset: 0;
+  position:absolute;
+  inset:0;
   background: url("2w-bg.PNG") center / cover no-repeat;
-  opacity: .55;                 /* ← tune 0.35–0.75 */
+  opacity: .55;              /* tune 0.35–0.75 */
   filter: saturate(1.08) contrast(1.06) brightness(.92);
-  transform: translateZ(0);     /* iOS paint stability */
-  z-index: 0;
+  transform: translateZ(0);
+  z-index:0;
 }
 
-/* soft dark veil (so text stays readable) */
 .cards::after{
   content:"";
-  position: absolute;
-  inset: 0;
+  position:absolute;
+  inset:0;
   background:
     radial-gradient(900px 520px at 50% 0%, rgba(0,0,0,.25), rgba(0,0,0,.68)),
     linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.70));
-  z-index: 1;
-  pointer-events: none;
+  z-index:1;
+  pointer-events:none;
 }
 
-/* Make sure the actual cards sit ABOVE the background layers */
 .cards > *{
   position: relative;
-  z-index: 2;
+  z-index:2;
 }
 
 @media (min-width: 820px){
