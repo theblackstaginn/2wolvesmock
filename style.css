@@ -1,39 +1,34 @@
 /* =========================================================
    2Wolves Mock — CLEAN STATIC STYLE
-   - NO hero background image
-   - NO dark hero panel
-   - Light readable text everywhere
-   - Image tiles only (no captions)
+   - Transparent hero (no panel)
+   - Readable text
+   - Image tiles only
+   - Skip link only on focus
    ========================================================= */
 
-/* =======================
-   ROOT VARIABLES
-   ======================= */
 :root{
   --text:#f2f4f6;
-  --muted: rgba(242,244,246,.75);
+  --muted: rgba(242,244,246,.78);
 
   --radius:18px;
   --shadow: 0 12px 35px rgba(0,0,0,.35);
 
   --wrap: min(1080px, calc(100% - 36px));
 
-  --bgOpacity:.65;
+  --bgOpacity:.62;
   --bgBright:.95;
   --bgSat:1.05;
 }
 
-/* =======================
-   RESET
-   ======================= */
 *{ box-sizing:border-box; }
+
 html,body{ height:100%; }
 
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   color:var(--text);
-  line-height:1.4;
+  line-height:1.45;
   background:#0a0c10;
 }
 
@@ -41,6 +36,28 @@ img{
   display:block;
   max-width:100%;
   height:auto;
+}
+
+/* =======================
+   SKIP LINK (fixes “artifact”)
+   ======================= */
+.skip{
+  position:absolute;
+  left:-9999px;
+  top:12px;
+  z-index:9999;
+
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(0,0,0,.85);
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.25);
+  text-decoration:none;
+}
+
+.skip:focus{
+  left:12px;
+  outline: none;
 }
 
 /* =======================
@@ -57,9 +74,7 @@ img{
   z-index:-2;
   background:url("2w-bg.PNG") center / cover no-repeat;
   opacity:var(--bgOpacity);
-  filter:
-    saturate(var(--bgSat))
-    brightness(var(--bgBright));
+  filter: saturate(var(--bgSat)) brightness(var(--bgBright));
 }
 
 .page::after{
@@ -67,15 +82,11 @@ img{
   position:fixed;
   inset:0;
   z-index:-1;
-  background:
-    linear-gradient(
-      rgba(0,0,0,.35),
-      rgba(0,0,0,.65)
-    );
+  background: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.68));
 }
 
 /* =======================
-   LAYOUT WRAPPER
+   WRAPPER
    ======================= */
 .wrap{
   width:var(--wrap);
@@ -95,11 +106,6 @@ img{
   background:transparent;
 }
 
-.hero::before,
-.hero::after{
-  content:none;
-}
-
 .hero-inner{
   display:flex;
   flex-direction:column;
@@ -115,10 +121,10 @@ img{
 
 .tagline{
   margin:0;
-  max-width:40ch;
+  max-width:42ch;
   font-size:clamp(16px, 4vw, 20px);
   color:var(--text);
-  text-shadow:0 8px 18px rgba(0,0,0,.55);
+  text-shadow:0 10px 22px rgba(0,0,0,.60);
 }
 
 .hero-actions{
@@ -138,12 +144,21 @@ img{
   padding:10px 16px;
   border-radius:999px;
   text-decoration:none;
-  font-weight:600;
+  font-weight:650;
   backdrop-filter: blur(6px);
 }
 
 .btn:hover{
   background:rgba(255,255,255,.25);
+}
+
+.btn:focus{
+  outline: 2px solid rgba(255,255,255,.45);
+  outline-offset: 3px;
+}
+
+.btn.ghost{
+  background:rgba(0,0,0,.20);
 }
 
 /* =======================
@@ -157,11 +172,13 @@ img{
   margin:0 0 14px;
   font-size:22px;
   color:var(--text);
+  text-shadow:0 10px 22px rgba(0,0,0,.55);
 }
 
 .section p{
   color:var(--muted);
   max-width:68ch;
+  text-shadow:0 10px 22px rgba(0,0,0,.55);
 }
 
 /* =======================
@@ -174,16 +191,23 @@ img{
 }
 
 @media (min-width:820px){
-  .cards{
-    grid-template-columns:repeat(3, minmax(0,1fr));
-  }
+  .cards{ grid-template-columns:repeat(3, minmax(0,1fr)); }
 }
 
 .card{
+  appearance:none;
+  border:0;
+  padding:0;
+  background:rgba(0,0,0,.25);
   border-radius:var(--radius);
   overflow:hidden;
   box-shadow:var(--shadow);
-  background:rgba(0,0,0,.25);
+  cursor:pointer;
+}
+
+.card:focus{
+  outline: 2px solid rgba(255,255,255,.45);
+  outline-offset: 4px;
 }
 
 .thumb{
@@ -195,9 +219,10 @@ img{
   width:100%;
   height:100%;
   object-fit:cover;
+  transform: scale(1.02);
 }
 
-/* REMOVE ALL TILE TEXT */
+/* Remove tile text (keep markup for accessibility/SEO but hide it) */
 .meta,
 .meta h3,
 .meta p{
@@ -205,49 +230,16 @@ img{
 }
 
 /* =======================
-   FOOTER
+   CTA
    ======================= */
-.footer{
-  padding:28px 0 36px;
-  border-top:1px solid rgba(255,255,255,.15);
+.cta-inner{
+  border-radius: var(--radius);
+  padding:22px;
+  background: rgba(0,0,0,.22);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
 }
 
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:13px;
-  color:var(--muted);
-}
-
-.footer-left{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-
-.footer-icon{
-  width:26px;
-  height:26px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,.25);
-}
-
-/* =======================
-   ACCESSIBILITY
-   ======================= */
-@media (prefers-reduced-motion: reduce){
-  *{
-    scroll-behavior:auto !important;
-  }
-}
-
-/* REMOVE ANY DEV / PREVIEW BADGES */
-.preview,
-#preview,
-.dev-preview,
-.site-preview,
-[data-preview],
-[class*="preview"] {
-  display: none !important;
-}
+.cta-actions{
+  margin-top:14px;
+  display:flex
