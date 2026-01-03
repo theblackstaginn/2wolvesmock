@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
   <title>2 Wolves Apothecary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="2 Wolves Apothecary — handcrafted herbal remedies & ritual goods." />
-  <meta name="theme-color" content="#0b0f12" />
+  <meta name="theme-color" content="#0a0c10" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="2w-favicon.PNG" />
@@ -18,12 +17,11 @@
 </head>
 
 <body>
+  <!-- Hidden unless focused (CSS) -->
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- HERO -->
   <header class="hero" role="banner">
-    <div class="hero-scrim" aria-hidden="true"></div>
-
     <div class="hero-inner">
       <img class="brand-logo" src="2w-logo.PNG" alt="2 Wolves Apothecary" />
 
@@ -32,10 +30,10 @@
         Modern craft. Old-world care.
       </p>
 
+      <!-- ONE button. Clickable. Mailto. -->
       <div class="hero-actions">
-  <a class="btn" href="mailto:thefarm1965@gmail.com">Explore</a>
-  <a class="btn ghost" href="mailto:thefarm1965@gmail.com">Contact</a>
-</div>
+        <a class="btn" href="mailto:thefarm1965@gmail.com">Email</a>
+      </div>
     </div>
   </header>
 
@@ -58,7 +56,7 @@
         <h2>Featured</h2>
 
         <div class="cards">
-          <button class="card" type="button" data-title="Detox Tea" data-img="Detox-tea.jpg">
+          <button class="card" type="button" data-title="Detox Tea" data-img="Detox-tea.jpg" aria-label="View Detox Tea">
             <div class="thumb">
               <img src="Detox-tea.jpg" alt="Detox Tea" loading="lazy" />
             </div>
@@ -68,7 +66,7 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Tattoo Balm" data-img="Tattoo-balm.jpg">
+          <button class="card" type="button" data-title="Tattoo Balm" data-img="Tattoo-balm.jpg" aria-label="View Tattoo Balm">
             <div class="thumb">
               <img src="Tattoo-balm.jpg" alt="Tattoo Balm" loading="lazy" />
             </div>
@@ -78,7 +76,7 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Rose Room Spray" data-img="Rose-room-spray.jpg">
+          <button class="card" type="button" data-title="Rose Room Spray" data-img="Rose-room-spray.jpg" aria-label="View Rose Room Spray">
             <div class="thumb">
               <img src="Rose-room-spray.jpg" alt="Rose Room Spray" loading="lazy" />
             </div>
@@ -88,7 +86,7 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Herbs" data-img="Herbs.jpg">
+          <button class="card" type="button" data-title="Herbs" data-img="Herbs.jpg" aria-label="View Herbs">
             <div class="thumb">
               <img src="Herbs.jpg" alt="Herbs" loading="lazy" />
             </div>
@@ -98,7 +96,7 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Mixing" data-img="Mixing.jpg">
+          <button class="card" type="button" data-title="Mixing" data-img="Mixing.jpg" aria-label="View Mixing">
             <div class="thumb">
               <img src="Mixing.jpg" alt="Mixing" loading="lazy" />
             </div>
@@ -108,7 +106,7 @@
             </div>
           </button>
 
-          <button class="card" type="button" data-title="Storefront" data-img="Storefront.jpg">
+          <button class="card" type="button" data-title="Storefront" data-img="Storefront.jpg" aria-label="View Storefront">
             <div class="thumb">
               <img src="Storefront.jpg" alt="Storefront" loading="lazy" />
             </div>
@@ -130,10 +128,8 @@
           If you want updates, you just pay for labor as needed.
         </p>
 
-        <!-- Replace # with real links later -->
         <div class="cta-actions">
           <a class="btn ghost" href="mailto:thefarm1965@gmail.com">Email</a>
-        
         </div>
       </div>
     </section>
@@ -152,6 +148,7 @@
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-backdrop" type="button" aria-label="Close"></button>
+
     <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image preview">
       <button class="lightbox-close" type="button" aria-label="Close">✕</button>
       <h3 class="lightbox-title" id="lightboxTitle">Preview</h3>
