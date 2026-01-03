@@ -380,3 +380,256 @@ img{
   .section{ padding:42px 0; }
   .footer-inner{ flex-direction:column; align-items:flex-start; }
 }
+
+/* =======================
+   CART BUTTON BADGE
+   ======================= */
+.cart-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 7px;
+  margin-left:6px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.25);
+  font-size:13px;
+  font-weight:700;
+}
+
+/* =======================
+   QUICK VIEW LAYOUT
+   ======================= */
+.qv{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:0;
+}
+
+.qv-media{
+  background:rgba(0,0,0,.18);
+}
+
+.qv-media img{
+  width:100%;
+  height:100%;
+  max-height:72vh;
+  object-fit:contain;
+  display:block;
+}
+
+.qv-info{
+  padding:16px 16px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.qv-price{
+  color:rgba(242,244,246,.85);
+  font-weight:700;
+}
+
+.qv-controls{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+
+.qv-qty{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  color:rgba(242,244,246,.78);
+  font-size:14px;
+}
+
+.qv-qty input{
+  width:110px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.25);
+  color:var(--text);
+  outline:none;
+}
+
+.qv-qty input:focus{
+  border-color: rgba(255,255,255,.35);
+}
+
+.qv-note{
+  margin:6px 0 0;
+  color:rgba(242,244,246,.62);
+  font-size:14px;
+  text-shadow:0 10px 22px rgba(0,0,0,.45);
+}
+
+.qv-actions{
+  margin-top:6px;
+  display:flex;
+  gap:12px;
+}
+
+@media (max-width:820px){
+  .qv{ grid-template-columns:1fr; }
+  .qv-media img{ max-height:56vh; }
+}
+
+/* =======================
+   CART DRAWER
+   ======================= */
+.cart{
+  position:fixed;
+  inset:0;
+  z-index:9992;
+  display:grid;
+  grid-template-columns: 1fr;
+}
+
+.cart[aria-hidden="true"]{ display:none; }
+
+.cart-backdrop{
+  position:absolute;
+  inset:0;
+  border:0;
+  background:rgba(0,0,0,.72);
+  cursor:pointer;
+}
+
+.cart-panel{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:min(420px, calc(100% - 36px));
+  background:rgba(10,12,16,.94);
+  border-left:1px solid rgba(255,255,255,.14);
+  box-shadow: -18px 0 60px rgba(0,0,0,.65);
+  display:flex;
+  flex-direction:column;
+}
+
+.cart-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 14px 12px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+.cart-head h3{
+  margin:0;
+  font-size:16px;
+}
+
+.cart-close{
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(0,0,0,.35);
+  color:var(--text);
+  cursor:pointer;
+}
+
+.cart-body{
+  padding:12px 14px;
+  overflow:auto;
+  flex:1;
+}
+
+.cart-item{
+  display:grid;
+  grid-template-columns: 64px 1fr;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.cart-thumb{
+  width:64px;
+  height:64px;
+  border-radius:14px;
+  overflow:hidden;
+  background:rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.cart-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.cart-meta{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:0;
+}
+
+.cart-name{
+  font-weight:750;
+  color:var(--text);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.cart-line{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  color:rgba(242,244,246,.70);
+  font-size:14px;
+}
+
+.cart-qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.cart-qty button{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.25);
+  color:var(--text);
+  cursor:pointer;
+}
+
+.cart-remove{
+  margin-left:auto;
+  border:0;
+  background:transparent;
+  color:rgba(242,244,246,.70);
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+.cart-foot{
+  padding:12px 14px 14px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+
+.cart-summary{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+  color:rgba(242,244,246,.85);
+}
+
+.cart-note{
+  margin:0 0 12px;
+  color:rgba(242,244,246,.62);
+  font-size:14px;
+}
