@@ -119,8 +119,14 @@ img{ display:block; max-width:100%; height:auto; }
   content:"";
   position: absolute;
   inset: 0;
-  background: url("Storefront.jpg") center / cover no-repeat;
-  filter: saturate(1.02) contrast(1.08) brightness(.90);
+
+  /* OPAQUE base so global bg can't show through */
+  background:
+    linear-gradient(rgba(6,8,12,1), rgba(6,8,12,1)),
+    url("Storefront.jpg") center / cover no-repeat;
+
+  /* dark + clean */
+  filter: saturate(1.02) contrast(1.08) brightness(.80);
   transform: translateZ(0);
   z-index: -2;
 }
