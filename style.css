@@ -241,3 +241,13 @@ img{
     scroll-behavior:auto !important;
   }
 }
+
+/* REMOVE ANY DEV / PREVIEW BADGES */
+.preview,
+#preview,
+.dev-preview,
+.site-preview,
+[data-preview],
+[class*="preview"] {
+  display: none !important;
+}
