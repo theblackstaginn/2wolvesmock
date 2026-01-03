@@ -17,7 +17,6 @@
 </head>
 
 <body>
-  <!-- Hidden unless focused (CSS) -->
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- HERO -->
@@ -26,11 +25,10 @@
       <img class="brand-logo" src="2w-logo.PNG" alt="2 Wolves Apothecary" />
 
       <p class="tagline">
-        Handcrafted herbal remedies & ritual goods.<br />
+        Handcrafted herbal remedies &amp; ritual goods.<br />
         Modern craft. Old-world care.
       </p>
 
-      <!-- ONE button. Clickable. Mailto. -->
       <div class="hero-actions">
         <a class="btn" href="mailto:thefarm1965@gmail.com">Email</a>
       </div>
@@ -149,13 +147,16 @@
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-backdrop" type="button" aria-label="Close"></button>
 
-    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
       <button class="lightbox-close" type="button" aria-label="Close">✕</button>
-      <h3 class="lightbox-title" id="lightboxTitle">Preview</h3>
-      <img class="lightbox-img" id="lightboxImg" alt="" />
+      <h3 class="lightbox-title" id="lightboxTitle"></h3>
+      <img class="lightbox-img" id="lightboxImg" alt="" loading="eager" />
     </div>
   </div>
 
   <script src="app.js"></script>
+
+  <!-- OPTIONAL: if you ever see injected "Preview" badges from older templates, this kills them -->
+  <!-- <style>.preview,.preview-badge,#preview,[data-preview]{display:none!important}</style> -->
 </body>
 </html>
