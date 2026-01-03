@@ -1,0 +1,164 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>2 Wolves Apothecary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="2 Wolves Apothecary — handcrafted herbal remedies & ritual goods." />
+  <meta name="theme-color" content="#0b0f12" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="2w-favicon.PNG" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <img class="brand-logo" src="2w-logo.PNG" alt="2 Wolves Apothecary" />
+
+      <p class="tagline">
+        Handcrafted herbal remedies & ritual goods.<br />
+        Modern craft. Old-world care.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn" href="#shop">Explore</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+
+    <!-- ABOUT -->
+    <section class="section about" aria-label="About 2 Wolves Apothecary">
+      <div class="wrap">
+        <h2>Rooted in craft</h2>
+        <p>
+          Small-batch blends, balms, and sprays made with intention—clean, consistent, and built for real life.
+          This is the kind of brand that deserves a site as sharp as the work behind it.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURE GRID -->
+    <section id="shop" class="section grid" aria-label="Products and process">
+      <div class="wrap">
+        <h2>Featured</h2>
+
+        <div class="cards">
+          <button class="card" type="button" data-title="Detox Tea" data-img="Detox-tea.jpg">
+            <div class="thumb">
+              <img src="Detox-tea.jpg" alt="Detox Tea" loading="lazy" />
+            </div>
+            <div class="meta">
+              <h3>Detox Tea</h3>
+              <p>Herbal blend</p>
+            </div>
+          </button>
+
+          <button class="card" type="button" data-title="Tattoo Balm" data-img="Tattoo-balm.jpg">
+            <div class="thumb">
+              <img src="Tattoo-balm.jpg" alt="Tattoo Balm" loading="lazy" />
+            </div>
+            <div class="meta">
+              <h3>Tattoo Balm</h3>
+              <p>Skin + aftercare</p>
+            </div>
+          </button>
+
+          <button class="card" type="button" data-title="Rose Room Spray" data-img="Rose-room-spray.jpg">
+            <div class="thumb">
+              <img src="Rose-room-spray.jpg" alt="Rose Room Spray" loading="lazy" />
+            </div>
+            <div class="meta">
+              <h3>Rose Room Spray</h3>
+              <p>Aromatic ritual</p>
+            </div>
+          </button>
+
+          <button class="card" type="button" data-title="Herbs" data-img="Herbs.jpg">
+            <div class="thumb">
+              <img src="Herbs.jpg" alt="Herbs" loading="lazy" />
+            </div>
+            <div class="meta">
+              <h3>Herbs</h3>
+              <p>Ingredients</p>
+            </div>
+          </button>
+
+          <button class="card" type="button" data-title="Mixing" data-img="Mixing.jpg">
+            <div class="thumb">
+              <img src="Mixing.jpg" alt="Mixing" loading="lazy" />
+            </div>
+            <div class="meta">
+              <h3>Mixing</h3>
+              <p>Small-batch process</p>
+            </div>
+          </button>
+
+          <button class="card" type="button" data-title="Storefront" data-img="Storefront.jpg">
+            <div class="thumb">
+              <img src="Storefront.jpg" alt="Storefront" loading="lazy" />
+            </div>
+            <div class="meta">
+              <h3>Storefront</h3>
+              <p>Local presence</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="section cta" aria-label="Contact">
+      <div class="wrap cta-inner">
+        <h2>Want this live as an actual site?</h2>
+        <p>
+          I can build the full version on a platform you own (GitHub Pages), with no monthly fee to me.
+          If you want updates, you just pay for labor as needed.
+        </p>
+
+        <!-- Replace # with real links later -->
+        <div class="cta-actions">
+          <a class="btn" href="#">Email</a>
+          <a class="btn ghost" href="#">Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div class="footer-left">
+          <img class="footer-icon" src="2w-icon.PNG" alt="" aria-hidden="true" />
+          <span>© <span id="year"></span> 2 Wolves Apothecary</span>
+        </div>
+        <span class="footer-right">Mock concept · single-page</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-backdrop" type="button" aria-label="Close"></button>
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+      <h3 class="lightbox-title" id="lightboxTitle">Preview</h3>
+      <img class="lightbox-img" id="lightboxImg" alt="" />
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
