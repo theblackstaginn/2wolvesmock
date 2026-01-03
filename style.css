@@ -1,8 +1,8 @@
-/* style.css — 2WolvesMock
-   - Hero uses 2w-bg.PNG
-   - Modern dark glass UI
-   - Clickable cards open lightbox
-   - Works clean on iOS
+/* style.css — 2WolvesMock (REWRITE, bulletproof)
+   - Page background uses 2w-bg.PNG (so it always shows)
+   - Hero uses Storefront.jpg behind the logo
+   - Tiles sit on top of the page background (glass cards)
+   - iOS-safe fixed background (degrades gracefully)
 */
 
 :root{
@@ -12,17 +12,21 @@
   --text:#f1f3f5;
   --muted: rgba(241,243,245,.72);
 
-  --glass: rgba(10,12,16,.52);
-  --glass2: rgba(10,12,16,.72);
+  --glass: rgba(12,14,18,.58);
+  --glass2: rgba(12,14,18,.78);
   --line: rgba(255,255,255,.10);
-
-  --accent: rgba(210,220,230,.92);
 
   --radius: 18px;
   --radius2: 22px;
   --shadow: 0 18px 55px rgba(0,0,0,.45);
 
   --wrap: min(1080px, calc(100% - 36px));
+
+  /* background tuning */
+  --bgOpacity: .55;      /* 0.35–0.75 */
+  --bgBright: .90;       /* 0.80–1.00 */
+  --bgSat: 1.08;
+  --bgCon: 1.06;
 }
 
 *{ box-sizing: border-box; }
@@ -30,14 +34,14 @@ html, body{ height: 100%; }
 body{
   margin:0;
   color: var(--text);
-  background: radial-gradient(1200px 700px at 50% 0%, rgba(255,255,255,.06), transparent 55%),
-              linear-gradient(180deg, var(--bg0), var(--bg1));
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   line-height: 1.35;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
+  background:
+    radial-gradient(1200px 700px at 50% 0%, rgba(255,255,255,.06), transparent 55%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
 }
-
 img{ display:block; max-width:100%; height:auto; }
 
 .wrap{
@@ -46,6 +50,7 @@ img{ display:block; max-width:100%; height:auto; }
   margin-right:auto;
 }
 
+/* Skip link */
 .skip{
   position:absolute;
   left:-9999px;
@@ -63,10 +68,45 @@ img{ display:block; max-width:100%; height:auto; }
   z-index:9999;
 }
 
-/* HERO */
+/* =========================================
+   PAGE BACKGROUND (2w-bg.PNG) — ALWAYS ON
+   ========================================= */
+.page{
+  position: relative;
+}
+.page::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("2w-bg.PNG") center / cover no-repeat;
+  opacity: var(--bgOpacity);
+  filter: saturate(var(--bgSat)) contrast(var(--bgCon)) brightness(var(--bgBright));
+  pointer-events: none;
+  transform: translateZ(0);
+}
+/* Soft darkening so text stays readable */
+.page::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events:none;
+  background:
+    radial-gradient(1100px 650px at 50% 0%, rgba(0,0,0,.20), rgba(0,0,0,.72)),
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.78));
+}
+
+/* iOS fallback: fixed backgrounds can be quirky.
+   If you notice weirdness, switch to absolute instead of fixed.
+   Leave this as-is unless needed. */
+
+/* =========================================
+   HERO (Storefront background behind logo)
+   ========================================= */
 .hero{
   position: relative;
-  min-height: 92vh;
+  min-height: 78vh;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -80,7 +120,7 @@ img{ display:block; max-width:100%; height:auto; }
   position: absolute;
   inset: 0;
   background: url("Storefront.jpg") center / cover no-repeat;
-  filter: saturate(1.02) contrast(1.08) brightness(.92);
+  filter: saturate(1.02) contrast(1.08) brightness(.90);
   transform: translateZ(0);
   z-index: -2;
 }
@@ -89,8 +129,8 @@ img{ display:block; max-width:100%; height:auto; }
   position:absolute;
   inset:0;
   background:
-    radial-gradient(900px 500px at 50% 20%, rgba(0,0,0,.25), rgba(0,0,0,.65)),
-    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.70));
+    radial-gradient(900px 520px at 50% 20%, rgba(0,0,0,.25), rgba(0,0,0,.72)),
+    linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.80));
   z-index:-1;
 }
 
@@ -104,14 +144,14 @@ img{ display:block; max-width:100%; height:auto; }
 }
 
 .brand-logo{
-  width: clamp(180px, 46vw, 360px);
+  width: clamp(190px, 48vw, 380px);
   height:auto;
   filter: drop-shadow(0 12px 30px rgba(0,0,0,.55));
 }
 
 .tagline{
   margin: 0;
-  max-width: 34ch;
+  max-width: 36ch;
   color: rgba(241,243,245,.92);
   font-size: clamp(16px, 3.8vw, 20px);
   letter-spacing: .2px;
@@ -139,19 +179,16 @@ img{ display:block; max-width:100%; height:auto; }
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
 }
 .btn:active{ transform: translateY(1px); }
-
 .btn.ghost{
   background: transparent;
   border-color: rgba(255,255,255,.24);
 }
 
-/* PAGE SECTIONS */
-.page{
-  position: relative;
-}
-
+/* =========================================
+   SECTIONS
+   ========================================= */
 .section{
-  padding: 46px 0;
+  padding: 44px 0;
 }
 
 .section h2{
@@ -163,57 +200,31 @@ img{ display:block; max-width:100%; height:auto; }
 .about p{
   margin: 0;
   color: var(--muted);
-  max-width: 62ch;
+  max-width: 68ch;
   font-size: 16px;
 }
 
-.grid h2{
-  margin-bottom: 16px;
-}
+/* =========================================
+   FEATURE GRID (NO fancy background here now)
+   ========================================= */
+.grid h2{ margin-bottom: 16px; }
 
 .cards{
-  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 14px;
 
-  padding: 28px;
+  padding: 18px;
   border-radius: 26px;
 
-  background: rgba(8,10,14,.72);
+  background: rgba(0,0,0,.22);
   border: 1px solid rgba(255,255,255,.08);
-  overflow: hidden;
-}
-
-.cards::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: url("2w-bg.PNG") center / cover no-repeat;
-  opacity: .55;              /* tune 0.35–0.75 */
-  filter: saturate(1.08) contrast(1.06) brightness(.92);
-  transform: translateZ(0);
-  z-index:0;
-}
-
-.cards::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(900px 520px at 50% 0%, rgba(0,0,0,.25), rgba(0,0,0,.68)),
-    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.70));
-  z-index:1;
-  pointer-events:none;
-}
-
-.cards > *{
-  position: relative;
-  z-index:2;
+  box-shadow: 0 18px 55px rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
 }
 
 @media (min-width: 820px){
-  .cards{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .cards{ grid-template-columns: repeat(3, minmax(0,1fr)); padding: 22px; }
 }
 
 .card{
@@ -248,16 +259,13 @@ img{ display:block; max-width:100%; height:auto; }
   object-fit: cover;
 }
 
-.meta{
-  padding-top: 10px;
-}
+.meta{ padding-top: 10px; }
 
 .meta h3{
   margin: 0 0 4px;
   font-size: 16px;
   letter-spacing: .2px;
 }
-
 .meta p{
   margin: 0;
   color: rgba(241,243,245,.70);
@@ -277,7 +285,7 @@ img{ display:block; max-width:100%; height:auto; }
 .cta p{
   margin: 0 0 14px;
   color: var(--muted);
-  max-width: 64ch;
+  max-width: 70ch;
 }
 
 .cta-actions{
@@ -328,10 +336,7 @@ img{ display:block; max-width:100%; height:auto; }
   display: none;
   z-index: 9999;
 }
-
-.lightbox[aria-hidden="false"]{
-  display: block;
-}
+.lightbox[aria-hidden="false"]{ display: block; }
 
 .lightbox-backdrop{
   position:absolute;
@@ -348,7 +353,7 @@ img{ display:block; max-width:100%; height:auto; }
   transform: translate(-50%, -50%);
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.14);
-  background: rgba(10,12,16,.88);
+  background: rgba(10,12,16,.90);
   box-shadow: 0 28px 80px rgba(0,0,0,.55);
   padding: 14px;
 }
